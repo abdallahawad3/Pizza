@@ -1,12 +1,15 @@
-import Order from "./components/Order";
-
+import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { routeTree } from "./routeTree.gen";
+const router = createRouter({ routeTree });
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const queryClient = new QueryClient();
 const App = () => {
   return (
-    <div>
-      <h1>Padre Gino&apos;s Pizza – Order Now</h1>
-      <Order />
-
-    </div>
+    <>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </>
   );
 };
 
